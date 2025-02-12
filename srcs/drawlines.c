@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:11:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/10 20:03:43 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/12 21:05:50 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int gradient(int startcolor, int endcolor, int len, int pix);
 int	get_steps(int point1, int point2);
 
-void	drawline_low(t_fdf **fdf, t_point start, t_point dest, int steps)
+void	drawline_low(t_fdf *fdf, t_point start, t_point dest, int steps)
 {
 	int	dx;
 	int	dy;
@@ -37,7 +37,7 @@ void	drawline_low(t_fdf **fdf, t_point start, t_point dest, int steps)
 	while (start.x <= dest.x)
 	{
 		color = gradient(start.color, dest.color, dx, i++);
-		mlx_pixel_put((*fdf)->mlx_ptr, (*fdf)->win_ptr, start.x++, start.y, color);
+		mlx_pixel_put((fdf)->mlx_ptr, (fdf)->win_ptr, start.x++, start.y, color);
 		if (D > 0)
 		{
 			start.y = start.y + yi;
@@ -48,7 +48,7 @@ void	drawline_low(t_fdf **fdf, t_point start, t_point dest, int steps)
 	}
 }
 
-void	drawline_high(t_fdf **fdf, t_point start, t_point dest, int steps)
+void	drawline_high(t_fdf *fdf, t_point start, t_point dest, int steps)
 {
 	int	dx;
 	int	dy;
@@ -69,7 +69,7 @@ void	drawline_high(t_fdf **fdf, t_point start, t_point dest, int steps)
 	while (start.y <= dest.y)
 	{
 		color = gradient(start.color, dest.color, dy, i++);
-		mlx_pixel_put((*fdf)->mlx_ptr, (*fdf)->win_ptr, start.x, start.y++, color);
+		mlx_pixel_put((fdf)->mlx_ptr, (fdf)->win_ptr, start.x, start.y++, color);
 		if (D > 0)
 		{
 			start.x = start.x + xi;
@@ -80,16 +80,13 @@ void	drawline_high(t_fdf **fdf, t_point start, t_point dest, int steps)
 	}
 }
 
-void	drawline(t_fdf **fdf, t_point start, t_point dest)
+void	drawline(t_fdf *fdf, t_point start, t_point dest)
 {
 	int steps;
 	int increment;
 	//steps = ABS_MAX((x1-x0), (y1-y0)) || steps = distance
 	steps = get_steps(dest.x - start.x, dest.y - start.y);
-	start.x += (*fdf) -> screen_x / 8 ;
-	dest.x += (*fdf) -> screen_x / 8;
-	start.y += (*fdf) -> screen_y / 2;
-	dest.y += (*fdf) -> screen_y / 2;
+
 	if (abs(dest.y - start.y) < abs(dest.x - start.x))
 	{
 		if (start.x > dest.x)
@@ -105,7 +102,6 @@ void	drawline(t_fdf **fdf, t_point start, t_point dest)
 			drawline_high(fdf, start, dest, steps);
 	}
 }
-//steps = distance, no need for function!
 int	get_steps(int point1, int point2)
 {
 	if (abs(point1) > abs(point2))
@@ -113,7 +109,6 @@ int	get_steps(int point1, int point2)
 	else
 		return (abs(point2));
 }
-
 int gradient(int startcolor, int endcolor, int len, int pix)
 {
 	double increment[3];

@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/01/28 23:23:25 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/12 21:07:06 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,28 @@
 # include <limits.h>
 # include <math.h>
 
-
 typedef struct	s_point
 {
 	int	x;
 	int	y;
-	int	color;
+	int color;
 }	t_point;
+
+typedef struct	s_image {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_image;
+
+typedef struct	s_vector
+{
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}	t_vector;
 
 typedef struct	s_line
 {
@@ -37,22 +52,23 @@ typedef	struct	s_fdf
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	int		screen_x;
-	int		screen_y;
+	int		scale;
+	int		map_size;
+	t_image	map_image;
+
 }	t_fdf;
 
-void	drawline(t_fdf **fdf, t_point start, t_point dest);
-void	drawmap(t_fdf **fdf, t_line **line, int distance);
-void	read_map(t_fdf **fdf, t_line **map_line, char *av);
-int		free_displays(t_fdf **fdf);
+#ifndef SCREEN_SIZE_X
+#define SCREEN_SIZE_X 1920
+#endif
+#ifndef SCREEN_SIZE_Y
+#define SCREEN_SIZE_Y 1080
+#endif
+void	drawline(t_fdf *fdf, t_point start, t_point dest);
+int		free_displays(t_fdf *fdf);
+int		get_color(char *str);
 
-//math convertions
-t_point	cartesian_to_iso(t_point cartesian, char *str_height, int distance, int color);
-int	ft_atoi_16(char *str);
-
-//struct utils
-t_line	*ft_newline(char **content);
-void	ft_lineadd_back(t_line **lst, t_line *new);
+//math prototypes
 
 # define T(a) ((a) >> 24) & 0xFF
 # define R(a) ((a) >> 16) & 0xFF
