@@ -6,39 +6,11 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:07:28 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/01/28 23:24:19 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/12 21:00:14 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-// t_point	cartesian_to_iso(t_point cartesian, char *str_height, int distance, int color)
-// {
-// 	t_point	isometric;
-// 	int		height;
-
-// 	height = (ft_atoi(str_height)) * distance;
-// 	cartesian.x *= distance;
-// 	cartesian.y *= distance;
-// 	isometric.x = (cartesian.x - cartesian.y);
-// 	isometric.y = ((cartesian.x + cartesian.y) / 2) - height;
-// 	isometric.color = color;
-// 	return (isometric);
-// }
-
-t_point	cartesian_to_iso(t_point cartesian, char *str_height, int distance, int color)
-{
-	t_point	isometric;
-	int		height;
-
-	height = (ft_atoi(str_height)) * distance;
-	cartesian.x *= distance;
-	cartesian.y *= distance;
-	isometric.x = (cartesian.x + cartesian.y); // Adjusted for left rotation
-	isometric.y = (cartesian.y - cartesian.x) / 2 - height / 2; // Adjusted for left rotation
-	isometric.color = color;
-	return (isometric);
-}
 
 static int	char_value(char c)
 {
@@ -77,4 +49,24 @@ int	ft_atoi_16(char *str)
 	}
 	num *= signal;
 	return ((int)num);
+}
+
+int	get_color(char *str)
+{
+	int	color;
+	char *colorstr;
+	colorstr = NULL;
+	colorstr = ft_strnstr(str, "0x", ft_strlen(str));
+	if (colorstr)
+		{
+			color = ft_atoi_16(colorstr + 2);
+		}
+	else
+		color = (0xFFFFFF);
+	return (color);
+}
+
+void	ft_pixelput(t_point point1, t_point point2, t_fdf *fdf)
+{
+	
 }
