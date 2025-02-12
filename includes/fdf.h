@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/12 21:07:06 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/12 21:23:44 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ typedef struct	s_point
 	int color;
 }	t_point;
 
+typedef struct s_line
+{
+	int	dx;
+	int	dy;
+	int	xi;
+	int yi;
+	int	D;
+	int color;
+}	t_line;
+
 typedef struct	s_image {
 	void	*img;
 	char	*addr;
@@ -42,11 +52,6 @@ typedef struct	s_vector
 	int	color;
 }	t_vector;
 
-typedef struct	s_line
-{
-	char **line;
-	struct s_line *next;
-}	t_line;
 
 typedef	struct	s_fdf
 {
