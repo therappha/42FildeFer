@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:42:20 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/12 21:26:37 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:44:46 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (0);
 	fdf.scale = 1;
+	fdf.map = read_map(av[1]);
 	fdf.mlx_ptr = mlx_init();
 	fdf.win_ptr= mlx_new_window(fdf.mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y, "FdF");
-	fdf.map_image.img = mlx_new_image(fdf.mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y);
+	fdf.image.img = mlx_new_image(fdf.mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y);
 	mlx_hook(fdf.win_ptr, DestroyNotify, 0L, free_displays, &fdf);
 	mlx_loop(fdf.mlx_ptr);
 }
