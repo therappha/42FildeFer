@@ -10,7 +10,8 @@ MLX= $(MLX_DIR)/libmlx.a
 LIBFT= $(LIBFT_DIR)/libft.a
 SRCS_DIR= ./srcs
 
-SRCS= $(SRCS_DIR)/main.c $(SRCS_DIR)/free_displays.c $(SRCS_DIR)/drawlines.c $(SRCS_DIR)/fdf_utils.c
+SRCS= $(SRCS_DIR)/main.c $(SRCS_DIR)/free_displays.c $(SRCS_DIR)/drawlines.c $(SRCS_DIR)/fdf_utils.c \
+$(SRCS_DIR)/split_map.c $(SRCS_DIR)/list_utils.c $(SRCS_DIR)/drawmap.c
 
 
 OBJS=$(SRCS:.c=.o)
