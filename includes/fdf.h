@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/12 21:23:44 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:26:38 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,28 @@ typedef struct	s_vector
 	int	color;
 }	t_vector;
 
+typedef struct s_map
+{
+	t_vector	*line;
+	int			line_count;
+	struct	s_map *next;
+}	t_map;
 
 typedef	struct	s_fdf
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	int		scale;
-	int		map_size;
-	t_image	map_image;
+	t_map	*map;
+	t_image	image;
 
 }	t_fdf;
 
 #ifndef SCREEN_SIZE_X
-#define SCREEN_SIZE_X 1920
+#define SCREEN_SIZE_X 1366
 #endif
 #ifndef SCREEN_SIZE_Y
-#define SCREEN_SIZE_Y 1080
+#define SCREEN_SIZE_Y 768
 #endif
 void	drawline(t_fdf *fdf, t_point start, t_point dest);
 int		free_displays(t_fdf *fdf);
