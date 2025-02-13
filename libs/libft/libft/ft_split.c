@@ -6,13 +6,13 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 17:23:28 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/01/11 16:46:47 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/13 21:47:02 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static void	*ft_freesplit(char **array, int i)
+void	*ft_freesplit(char **array, int i)
 {
 	while (i > 0)
 	{
