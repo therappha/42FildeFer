@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/13 17:26:38 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/13 22:07:34 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef	struct	s_fdf
 	void	*mlx_ptr;
 	void	*win_ptr;
 	int		scale;
-	t_map	*map;
+	t_map	**map;
 	t_image	image;
 
 }	t_fdf;
@@ -78,6 +78,12 @@ typedef	struct	s_fdf
 void	drawline(t_fdf *fdf, t_point start, t_point dest);
 int		free_displays(t_fdf *fdf);
 int		get_color(char *str);
+
+//linked list utils
+t_map	*ft_newmap(char *line, int line_count);
+void	ft_mapaddback(t_map **map, t_map *node);
+void	ft_freemap(t_map **map);
+
 
 //math prototypes
 
