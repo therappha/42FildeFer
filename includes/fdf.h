@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/14 18:08:52 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:20:22 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef	struct	s_fdf
 void	drawline(t_fdf *fdf, t_point start, t_point dest);
 int		free_displays(t_fdf *fdf);
 int		get_color(char *str);
+void	ft_pixelput(t_image *data, int x, int y, int color);
 
 //linked list utils
 t_map	*ft_newmap(char *line, int line_count, t_fdf *fdf);

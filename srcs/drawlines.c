@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:11:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/12 21:25:18 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:24:21 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	drawline_low(t_fdf *fdf, t_point start, t_point dest, int steps)
 	while (start.x <= dest.x)
 	{
 		line.color = gradient(start.color, dest.color, line.dx, i++);
-		mlx_pixel_put((fdf)->mlx_ptr, (fdf)->win_ptr, start.x++, start.y, line.color);
+		ft_pixelput(&fdf->image, start.x++, start.y, line.color);
 		if (line.D > 0)
 		{
 			start.y = start.y + line.yi;
@@ -62,7 +62,7 @@ void	drawline_high(t_fdf *fdf, t_point start, t_point dest, int steps)
 	while (start.y <= dest.y)
 	{
 		line.color = gradient(start.color, dest.color, line.dy, i++);
-		mlx_pixel_put((fdf)->mlx_ptr, (fdf)->win_ptr, start.x, start.y++, line.color);
+		ft_pixelput(&fdf->image, start.x, start.y++, line.color);
 		if (line.D > 0)
 		{
 			start.x = start.x + line.xi;

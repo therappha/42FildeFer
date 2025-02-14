@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:07:28 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/12 21:00:14 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:19:41 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ int	get_color(char *str)
 	return (color);
 }
 
-void	ft_pixelput(t_point point1, t_point point2, t_fdf *fdf)
+void	ft_pixelput(t_image *data, int x, int y, int color)
 {
-	
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
