@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:54:59 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/13 22:08:52 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:06:52 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ft_countwords(const char *s, char c)
 	return (words);
 }
 
-t_vector *ft_split_points(char *str, int line_count)
+t_vector *ft_split_points(char *str, int line_count, t_fdf *fdf)
 {
 	int			count_points;
 	t_vector	*point_line;
@@ -56,29 +56,32 @@ t_vector *ft_split_points(char *str, int line_count)
 		point_line[i].color = get_color(elements[i]);
 		i++;
 	}
+	fdf -> map_width = count_points;
 	ft_freesplit(elements, count_points);
 	return (point_line);
 }
 
-t_map	*ft_newmap(char *line, int line_count)
+t_map	*ft_newmap(char *line, int line_count, t_fdf *fdf)
 {
 	t_map *map = (t_map *)malloc(sizeof(t_map));
 
-	map -> line = ft_split_points(line, line_count);
+	map -> line = ft_split_points(line, line_count, fdf);
 	map -> next = NULL;
 	map -> line_count = line_count;
 	return (map);
 }
 void	ft_mapaddback(t_map **map, t_map *node)
 {
-	t_map *head;
+	t_map	*head;
 
-	head = *map;
-	if (!head)
+	if (!node)
+		return ;
+	if (!*map)
 	{
 		*map = node;
 		return ;
 	}
+	head = *map;
 	while (head -> next)
 	{
 		head = head -> next;

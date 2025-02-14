@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/14 15:07:34 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:08:52 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,30 @@ typedef	struct	s_fdf
 	void	*mlx_ptr;
 	void	*win_ptr;
 	int		scale;
-	t_map	**map;
+	int		map_width;
+	int		map_height;
+	t_map	*map;
 	t_image	image;
 
 }	t_fdf;
 
 #ifndef SCREEN_SIZE_X
-#define SCREEN_SIZE_X 1366
+#define SCREEN_SIZE_X 1900
 #endif
 #ifndef SCREEN_SIZE_Y
-#define SCREEN_SIZE_Y 768
+#define SCREEN_SIZE_Y 1020
 #endif
 void	drawline(t_fdf *fdf, t_point start, t_point dest);
 int		free_displays(t_fdf *fdf);
 int		get_color(char *str);
 
 //linked list utils
-t_map	*ft_newmap(char *line, int line_count);
+t_map	*ft_newmap(char *line, int line_count, t_fdf *fdf);
 void	ft_mapaddback(t_map **map, t_map *node);
 void	ft_freemap(t_map **map);
 
 //map parsing
-t_map	**read_map(char *str);
+t_map	*read_map(char *str, t_fdf *fdf);
 
 //math prototypes
 
