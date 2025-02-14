@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/13 22:07:34 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:07:34 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ t_map	*ft_newmap(char *line, int line_count);
 void	ft_mapaddback(t_map **map, t_map *node);
 void	ft_freemap(t_map **map);
 
+//map parsing
+t_map	**read_map(char *str);
 
 //math prototypes
 
