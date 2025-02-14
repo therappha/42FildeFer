@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:11:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/14 18:24:21 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/14 20:29:20 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ void	drawline(t_fdf *fdf, t_point start, t_point dest)
 {
 	int steps;
 	int increment;
+	start.x += 500;
+	start.y += 500;
+	dest.x += 500;
+	dest.y +=500;
 	//steps = ABS_MAX((x1-x0), (y1-y0)) || steps = distance
 	steps = get_steps(dest.x - start.x, dest.y - start.y);
 

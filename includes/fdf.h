@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/14 18:20:22 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/14 20:18:10 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef	struct	s_fdf
 	int		scale;
 	int		map_width;
 	int		map_height;
+	int 	focal_length;
 	t_map	*map;
 	t_image	image;
 
@@ -77,6 +78,10 @@ typedef	struct	s_fdf
 #ifndef SCREEN_SIZE_Y
 #define SCREEN_SIZE_Y 1020
 #endif
+#ifndef FOCAL_LENGTH
+#define FOCAL_LENGTH 100
+#endif
+
 void	drawline(t_fdf *fdf, t_point start, t_point dest);
 int		free_displays(t_fdf *fdf);
 int		get_color(char *str);
@@ -89,9 +94,10 @@ void	ft_freemap(t_map **map);
 
 //map parsing
 t_map	*read_map(char *str, t_fdf *fdf);
+void	drawmap(t_fdf *fdf);
 
 //math prototypes
-
+void	rotate_all(t_vector *v, int angle_x, int angle_y, int angle_z);
 # define T(a) ((a) >> 24) & 0xFF
 # define R(a) ((a) >> 16) & 0xFF
 # define G(a) ((a) >> 8) & 0xFF

@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:54:59 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/14 18:06:52 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/14 20:39:43 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,13 @@ t_vector *ft_split_points(char *str, int line_count, t_fdf *fdf)
 	i = 0;
 	while (i < count_points)
 	{
-		point_line[i].x = i;
-		point_line[i].y = ft_atoi(elements[i]);
-		point_line[i].z = line_count;
+		point_line[i].x = i * (*fdf).scale;
+		point_line[i].y = line_count  * (*fdf).scale;
+		point_line[i].z = ft_atoi(elements[i])  * ((*fdf).scale);
 		point_line[i].color = get_color(elements[i]);
+		ft_printf("before rotate all: %d %d %d ", point_line[i].x, point_line[i].y, point_line[i].z);
+		//rotate_all(&point_line[i], 10, 10, 0);
+		ft_printf("after: %d %d %d\n", point_line[i].x, point_line[i].y, point_line[i].z);
 		i++;
 	}
 	fdf -> map_width = count_points;

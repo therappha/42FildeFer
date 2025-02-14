@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:21:43 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/14 18:05:11 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/14 19:29:25 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_map	*read_map(char *str, t_fdf *fdf)
 			return (free(line), NULL);
 		free(line);
 		ft_mapaddback(&map, node);
-		line_count ++;
+		line_count++;
 	}
 	fdf -> map_height = line_count;
 	return (map);
