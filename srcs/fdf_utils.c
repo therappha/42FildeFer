@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:07:28 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/14 20:16:45 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/16 00:31:52 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,19 @@ void	ft_pixelput(t_image *data, int x, int y, int color)
 {
 	char	*dst;
 
-	//ft_printf("putting pixel at: %d, %d, %d\n", x, y, color);
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	if (x >= 0 && x < SCREEN_SIZE_X && y >= 0 && y < SCREEN_SIZE_Y)
+	{
+		dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+		*(unsigned int*)dst = color;
+	}
+}
+
+void reset_image(t_fdf *fdf)
+{
+    if (fdf->image.img)
+        mlx_destroy_image(fdf->mlx_ptr, fdf->image.img);
+
+    fdf->image.img = mlx_new_image(fdf->mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y);
+    fdf->image.addr = mlx_get_data_addr(fdf->image.img, &fdf->image.bits_per_pixel,
+                                        &fdf->image.line_length, &fdf->image.endian);
 }

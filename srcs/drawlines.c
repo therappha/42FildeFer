@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:11:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/14 20:29:20 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:11:48 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,69 @@
 
 int gradient(int startcolor, int endcolor, int len, int pix);
 int	get_steps(int point1, int point2);
+#define LEFT  1
+#define RIGHT 2
+#define BOTTOM 4
+#define TOP 8
+
+// Check if the point is inside the screen or outside
+int computeOutcode(t_point p) {
+    int code = 0;
+    if (p.x < 0) code |= LEFT;
+    if (p.x > SCREEN_SIZE_X) code |= RIGHT;
+    if (p.y < 0) code |= BOTTOM;
+    if (p.y > SCREEN_SIZE_Y) code |= TOP;
+    return code;
+}
+
+// Cohen-Sutherland line clipping function that takes two t_point arguments
+void clipLine(t_point *start, t_point *dest) {
+    int outcode0 = computeOutcode(*start);
+    int outcode1 = computeOutcode(*dest);
+    int accept = 0;
+
+    while (1) {
+        if (!(outcode0 | outcode1)) {
+            // Both points inside, accept the line
+            accept = 1;
+            break;
+        } else if (outcode0 & outcode1) {
+            // Both points outside, reject the line
+            break;
+        } else {
+            // Calculate the intersection point
+            int x, y;
+            int outcodeOut = outcode0 ? outcode0 : outcode1;
+
+            // Find the intersection point
+            if (outcodeOut & TOP) {
+                x = start->x + (dest->x - start->x) * (SCREEN_SIZE_Y - start->y) / (dest->y - start->y);
+                y = SCREEN_SIZE_Y;
+            } else if (outcodeOut & BOTTOM) {
+                x = start->x + (dest->x - start->x) * (0 - start->y) / (dest->y - start->y);
+                y = 0;
+            } else if (outcodeOut & RIGHT) {
+                y = start->y + (dest->y - start->y) * (SCREEN_SIZE_X - start->x) / (dest->x - start->x);
+                x = SCREEN_SIZE_X;
+            } else if (outcodeOut & LEFT) {
+                y = start->y + (dest->y - start->y) * (0 - start->x) / (dest->x - start->x);
+                x = 0;
+            }
+
+            // Update the point that was outside
+            if (outcodeOut == outcode0) {
+                start->x = x;
+                start->y = y;
+                outcode0 = computeOutcode(*start);
+            } else {
+                dest->x = x;
+                dest->y = y;
+                outcode1 = computeOutcode(*dest);
+            }
+        }
+    }
+}
+
 
 void	drawline_low(t_fdf *fdf, t_point start, t_point dest, int steps)
 {
@@ -77,10 +140,12 @@ void	drawline(t_fdf *fdf, t_point start, t_point dest)
 {
 	int steps;
 	int increment;
-	start.x += 500;
-	start.y += 500;
-	dest.x += 500;
-	dest.y +=500;
+
+	clipLine(&start, &dest);
+	//start.y -= 500;
+	//dest.y -= 500;
+	//start.x -= 300;
+	//dest.x -= 300;
 	//steps = ABS_MAX((x1-x0), (y1-y0)) || steps = distance
 	steps = get_steps(dest.x - start.x, dest.y - start.y);
 
@@ -98,6 +163,7 @@ void	drawline(t_fdf *fdf, t_point start, t_point dest)
 		else
 			drawline_high(fdf, start, dest, steps);
 	}
+
 }
 int	get_steps(int point1, int point2)
 {
