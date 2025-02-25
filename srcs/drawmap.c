@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:46:27 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/16 00:42:55 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:37:21 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ t_point vec_to_2d(t_vector v, t_fdf *fdf) {
 	v.z += (*fdf).z_move * (*fdf).scale;
 	v.y += (*fdf).y_move *  (*fdf).scale;
 	v.x += (*fdf).x_move * (*fdf).scale;
-    float fovRad = (FOCAL_LENGTH * M_PI) / 180.0;  // Convert FOV to radians
-    float scale = tan(fovRad / 2);
-    if (v.z <= 0) v.z = 0.01;  // Prevent division by zero
-    // Perspective projection formula
-    x = ((-v.x / (v.z * scale)) * SCREEN_SIZE_X / 2 + SCREEN_SIZE_X / 2);
-    y = ((-v.y / (v.z * scale)) * SCREEN_SIZE_Y / 2 + SCREEN_SIZE_Y / 2);
+	float fovRad = (FOCAL_LENGTH * M_PI) / 180.0;  // Convert FOV to radians
+	float scale = tan(fovRad / 2);
+	if (v.z <= 0) v.z = 0.01;  // Prevent division by zero
+	// Perspective projection formula
+	x = ((-v.x / (v.z * scale)) * SCREEN_SIZE_X / 2 + SCREEN_SIZE_X / 2);
+	y = ((-v.y / (v.z * scale)) * SCREEN_SIZE_Y / 2 + SCREEN_SIZE_Y / 2);
 	p.x = x;
 	p.y = y;
-	p.color = v.color;  // Preserve color
-    return p;
+	p.color = v.color;  
+	return p;
 }
 
 void	drawmap(t_fdf *fdf)

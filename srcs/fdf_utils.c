@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:07:28 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/16 00:31:52 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:36:59 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ void	ft_pixelput(t_image *data, int x, int y, int color)
 
 void reset_image(t_fdf *fdf)
 {
-    if (fdf->image.img)
-        mlx_destroy_image(fdf->mlx_ptr, fdf->image.img);
+    //if (fdf->image.img)
+      //  mlx_destroy_image(fdf->mlx_ptr, fdf->image.img);
 
     fdf->image.img = mlx_new_image(fdf->mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y);
-    fdf->image.addr = mlx_get_data_addr(fdf->image.img, &fdf->image.bits_per_pixel,
-                                        &fdf->image.line_length, &fdf->image.endian);
+	fdf->image.addr = mlx_get_data_addr(fdf->image.img, &fdf->image.bits_per_pixel,
+		&fdf->image.line_length, &fdf->image.endian);
 }
