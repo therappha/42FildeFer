@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 19:04:07 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:33:38 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef	struct	s_fdf
 	void	*win_ptr;
 	int		screen_x;
 	int		screen_y;
+	int		scale;
 	t_image	image;
 }	t_fdf;
 

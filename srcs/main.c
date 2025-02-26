@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:42:20 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 19:02:57 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:34:02 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 		ft_printf("Error, Could not read file!\n");
 		return (0);
 	}
+	fdf.scale = atoi(av[2]);
 	fdf.mlx_ptr = mlx_init();
 	fdf.win_ptr = mlx_new_window
 		(fdf.mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y, "FdF");
