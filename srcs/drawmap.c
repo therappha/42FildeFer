@@ -6,18 +6,17 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:04:57 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 19:57:53 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/26 21:50:07 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 int		get_color(char *str);
-void	drawline_down(t_fdf *fdf, t_point iterate,
-			char **c_line, char **n_line);
-void	drawline_right(t_fdf *fdf, t_point iterate, char **c_line);
+void	draw_down(t_fdf *fdf, t_point iterate, char **c_line, char **n_line);
+void	draw_right(t_fdf *fdf, t_point iterate, char **c_line);
 
-void	drawmap(t_fdf *fdf, t_line **line, int distance)
+void	drawmap(t_fdf *fdf, t_line **line)
 {
 	t_line	*current_line;
 	char	**current_array;
@@ -36,9 +35,9 @@ void	drawmap(t_fdf *fdf, t_line **line, int distance)
 		while (current_array[iterate.x])
 		{
 			if (current_array[iterate.x + 1])
-				drawline_right(fdf, iterate, current_array);
+				draw_right(fdf, iterate, current_array);
 			if (next_array && next_array[iterate.x])
-				drawline_down(fdf, iterate, current_array, next_array);
+				draw_down(fdf, iterate, current_array, next_array);
 			iterate.x++;
 		}
 		current_line = current_line -> next;
@@ -46,7 +45,7 @@ void	drawmap(t_fdf *fdf, t_line **line, int distance)
 	}
 }
 
-void	drawline_right(t_fdf *fdf, t_point iterate, char **c_line)
+void	draw_right(t_fdf *fdf, t_point iterate, char **c_line)
 {
 	t_point	start;
 	t_point	dest;
@@ -61,7 +60,7 @@ void	drawline_right(t_fdf *fdf, t_point iterate, char **c_line)
 	drawline(fdf, start, dest);
 }
 
-void	drawline_down(t_fdf *fdf, t_point iterate, char **c_line, char **n_line)
+void	draw_down(t_fdf *fdf, t_point iterate, char **c_line, char **n_line)
 {
 	t_point	start;
 	t_point	dest;
@@ -84,12 +83,8 @@ int	get_color(char *str)
 	colorstr = NULL;
 	colorstr = ft_strnstr(str, "0x", ft_strlen(str));
 	if (colorstr)
-		{
-			color = ft_atoi_16(colorstr + 2);
-		}
+		color = ft_atoi_16(colorstr + 2);
 	else
 		color = (0xFFFFFF);
 	return (color);
 }
-
-

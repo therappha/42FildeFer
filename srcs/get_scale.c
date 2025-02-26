@@ -1,46 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   get_scale.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 18:39:30 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 21:05:02 by rafaelfe         ###   ########.fr       */
+/*   Created: 2025/02/26 22:01:46 by rafaelfe          #+#    #+#             */
+/*   Updated: 2025/02/26 22:05:23 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	ft_freesplit(char **str)
+int	ft_linelen(char **line)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
-	{
-		free (str[i]);
+	while (line[i])
 		i++;
-	}
-	free(str);
+	return (i);
 }
 
-void	ft_linefree(t_line **line)
+int	get_scale(t_fdf *fdf)
 {
-	t_line	*temp;
-
-	while (*line)
-	{
-		temp = (*line)-> next;
-		ft_freesplit((*line)-> line);
-		free(*line);
-		*line = temp;
-	}
-}
-
-int	input_handler(int keysym, t_fdf *fdf)
-{
-	if (keysym == XK_Escape)
-		free_displays(fdf);
-	return (0);
+	printf("map size %d, %d\n", (*fdf).map_x, (*fdf).map_y);
+	return (1);
 }

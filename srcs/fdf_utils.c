@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:07:28 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 18:16:24 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/26 22:01:53 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_point	cart_to_iso(t_point cartesian, char *s_height, int distance, int color)
 	t_point	isometric;
 	int		height;
 
+	if (distance <= 0)
+		distance = 1;
 	height = (ft_atoi(s_height)) * distance;
 	cartesian.x *= distance;
 	cartesian.y *= distance;

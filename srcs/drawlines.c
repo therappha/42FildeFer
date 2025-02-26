@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:11:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 18:09:33 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/26 21:17:02 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ void	drawline_low(t_fdf *fdf, t_point start, t_point dest, int steps)
 		line.yi = -1;
 		line.dy = -line.dy;
 	}
-	line.D = (2 * line.dy) - line.dx;
+	line.d = (2 * line.dy) - line.dx;
 	i = 0;
 	while (start.x <= dest.x)
 	{
 		line.color = gradient(start.color, dest.color, line.dx, i++);
 		ft_pixelput(&fdf->image, start.x++, start.y, line.color);
-		if (line.D > 0)
+		if (line.d > 0)
 		{
 			start.y = start.y + line.yi;
-			line.D = line.D + (2 * (line.dy - line.dx));
+			line.d = line.d + (2 * (line.dy - line.dx));
 		}
 		else
-			line.D = line.D + 2 * line.dy;
+			line.d = line.d + 2 * line.dy;
 	}
 }
 
@@ -58,18 +58,18 @@ void	drawline_high(t_fdf *fdf, t_point start, t_point dest, int steps)
 		line.xi = -1;
 		line.dx = -line.dx;
 	}
-	line.D = (2 * line.dx) - line.dy;
+	line.d = (2 * line.dx) - line.dy;
 	while (start.y <= dest.y)
 	{
 		line.color = gradient(start.color, dest.color, line.dy, i++);
 		ft_pixelput(&fdf->image, start.x, start.y++, line.color);
-		if (line.D > 0)
+		if (line.d > 0)
 		{
 			start.x = start.x + line.xi;
-			line.D = line.D + (2 * (line.dx - line.dy));
+			line.d = line.d + (2 * (line.dx - line.dy));
 		}
 		else
-			line.D = line.D + 2 * line.dx;
+			line.d = line.d + 2 * line.dx;
 	}
 }
 
