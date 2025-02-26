@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/01/28 23:23:25 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:04:07 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <limits.h>
 # include <math.h>
 
+#define SCREEN_SIZE_X 1920
+#define SCREEN_SIZE_Y 1080
 
 typedef struct	s_point
 {
@@ -33,23 +35,44 @@ typedef struct	s_line
 	struct s_line *next;
 }	t_line;
 
+typedef struct s_drawline
+{
+	int	dx;
+	int	dy;
+	int	xi;
+	int yi;
+	int	D;
+	int color;
+}	t_drawline;
+
+typedef struct	s_image {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_image;
+
 typedef	struct	s_fdf
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	int		screen_x;
 	int		screen_y;
+	t_image	image;
 }	t_fdf;
 
-void	drawline(t_fdf **fdf, t_point start, t_point dest);
-void	drawmap(t_fdf **fdf, t_line **line, int distance);
-void	read_map(t_fdf **fdf, t_line **map_line, char *av);
-int		free_displays(t_fdf **fdf);
+void	drawline(t_fdf *fdf, t_point start, t_point dest);
+void	drawmap(t_fdf *fdf, t_line **line, int distance);
+int	read_map(t_line **map_line, char *av);
+int		free_displays(t_fdf *fdf);
+void	ft_pixelput(t_image *data, int x, int y, int color);
 
 //math convertions
-t_point	cartesian_to_iso(t_point cartesian, char *str_height, int distance, int color);
+t_point	cart_to_iso(t_point cartesian, char *s_height, int distance, int color);
 int	ft_atoi_16(char *str);
-
+void	ft_linefree(t_line **line);
+int	input_handler(int keysym, t_fdf *fdf);
 //struct utils
 t_line	*ft_newline(char **content);
 void	ft_lineadd_back(t_line **lst, t_line *new);

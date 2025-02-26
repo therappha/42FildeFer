@@ -1,24 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_displays.c                                    :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 17:41:42 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 18:56:15 by rafaelfe         ###   ########.fr       */
+/*   Created: 2025/02/26 18:39:30 by rafaelfe          #+#    #+#             */
+/*   Updated: 2025/02/26 19:03:54 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	free_displays(t_fdf *fdf)
+void	ft_freesplit(char **str)
 {
-	mlx_loop_end((*fdf).mlx_ptr);
-	mlx_destroy_window((*fdf).mlx_ptr, (*fdf).win_ptr);
-	mlx_destroy_display((*fdf).mlx_ptr);
-	free((*fdf).mlx_ptr);
-	ft_printf("Closing Application!");
-	exit(1);
+	int	i;
+
+	i = 0;
+	while(str[i])
+	{
+		free (str[i]);
+		i++;
+	}
+	free(str);
+}
+
+void	ft_linefree(t_line **line)
+{
+	t_line	*temp;
+
+	while (*line)
+	{
+		temp = (*line)-> next;
+		ft_freesplit((*line) -> line);
+		free(*line);
+		*line = temp;
+	}
+}
+
+int	input_handler(int keysym, t_fdf *fdf)
+{
+	if (keysym == XK_Escape)
+		free_displays(fdf);
 	return (0);
 }

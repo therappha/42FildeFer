@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:04:57 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/10 20:03:39 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:20:30 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	get_color(char *str);
 
-void drawmap(t_fdf **fdf, t_line **line, int distance)
+void drawmap(t_fdf *fdf, t_line **line, int distance)
 {
 	t_line *current_line;
 	t_point start;
@@ -23,9 +23,8 @@ void drawmap(t_fdf **fdf, t_line **line, int distance)
 	char **next_array;
 	int	line_count;
 	int	i;
-	int	j;
+	
 	i = 0;
-	j = 0;
 	line_count = 0;
 	start.color = 0;
 	dest.color = 0;
@@ -47,14 +46,14 @@ void drawmap(t_fdf **fdf, t_line **line, int distance)
 					dest.x = (i + 1);
 					dest.y = line_count;
 					dest.color = get_color(current_array[i + 1]);
-					drawline(fdf, cartesian_to_iso(start, current_array[i], distance, start.color), cartesian_to_iso(dest, current_array[i + 1], distance, dest.color));
+					drawline(fdf, cart_to_iso(start, current_array[i], distance, start.color), cart_to_iso(dest, current_array[i + 1], distance, dest.color));
 				}
 				if (next_array && next_array[i])
 				{
 					dest.x = (i);
 					dest.y = line_count + 1;
 					dest.color = get_color(next_array[i]);
-					drawline(fdf, cartesian_to_iso(start, current_array[i], distance, start.color), cartesian_to_iso(dest, next_array[i], distance, dest.color));
+					drawline(fdf, cart_to_iso(start, current_array[i], distance, start.color), cart_to_iso(dest, next_array[i], distance, dest.color));
 				}
 				i++;
 		}
@@ -65,8 +64,8 @@ void drawmap(t_fdf **fdf, t_line **line, int distance)
 
 int	get_color(char *str)
 {
-	int	color;
-	char *colorstr;
+	int		color;
+	char	*colorstr;
 	colorstr = NULL;
 	colorstr = ft_strnstr(str, "0x", ft_strlen(str));
 	if (colorstr)

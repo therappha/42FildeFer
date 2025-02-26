@@ -6,28 +6,37 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:56:09 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/01/28 17:48:46 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:34:47 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void read_map(t_fdf **fdf, t_line **map_line, char *av)
+int	read_map(t_line **map_line, char *av)
 {
 	int		fd;
 	char	*line;
-	t_line *newline;
+	t_line	*newline;
 
 	fd = open(av, O_RDONLY);
-	while ((line = get_next_line(fd)))
+	if (fd == -1)
 	{
+		return (-1);
+	}
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
 		newline = ft_newline(ft_split(line, ' '));
 		ft_lineadd_back(map_line, newline);
 		free(line);
 	}
+	close(fd);
+	return (0);
 }
 
-t_line *ft_newline(char **content)
+t_line	*ft_newline(char **content)
 {
 	t_line	*newline;
 
