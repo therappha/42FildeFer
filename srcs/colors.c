@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 20:16:49 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/27 21:49:09 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 21:50:22 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,17 @@ int	get_rgb(int r, int g, int b)
 	return (0xFF << 24 | r << 16 | g << 8 | b);
 }
 
-int	gradient(int startcolor, int endcolor, int len, int pix)
+int	gradient(int startcolor, int endcolor, double len, int pix)
 {
-	t_color		color;
+	t_color	color;
 	int		newcolor;
 
-	color.step_r = ((double)(get_r(endcolor)) - (get_r(startcolor))) / (double)len;
-	color.step_g = ((double)(get_g(endcolor)) - (get_g(startcolor))) / (double)len;
-	color.step_b = ((double)(get_b(endcolor)) - (get_b(startcolor))) / (double)len;
+	color.step_r = ((double)(get_r(endcolor)) - (get_r(startcolor))) / len;
+	color.step_g = ((double)(get_g(endcolor)) - (get_g(startcolor))) / len;
+	color.step_b = ((double)(get_b(endcolor)) - (get_b(startcolor))) / len;
 	color.r = (get_r(startcolor)) + (pix * color.step_r);
 	color.g = (get_g(startcolor)) + (pix * color.step_g);
 	color.b = (get_b(startcolor)) + (pix * color.step_b);
 	newcolor = get_rgb(color.r, color.g, color.b);
 	return (newcolor);
 }
-
