@@ -38,7 +38,9 @@ void rotate_all(t_vector *v, int angle_x, int angle_y, int angle_z)
 }
 
 
-t_vector rotate_around_point(t_vector point, t_vector origin, int theta_x, int theta_y, int theta_z) {
+t_vector rotate_around_point(t_vector point, t_vector origin, int theta_x, int theta_y, int theta_z)
+
+{
     // Convert angles to radians
     float rad_x = DEG_TO_RAD(theta_x);
     float rad_y = DEG_TO_RAD(theta_y);

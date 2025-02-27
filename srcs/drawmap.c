@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 18:46:27 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/16 00:42:55 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/16 20:30:40 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ t_point vec_to_2d(t_vector v, t_fdf *fdf) {
 	middle.x = (*fdf).map_width / 2 * (*fdf).scale;
 	middle.y = 0;
 	middle.z = (*fdf).map_height / 2 * (*fdf).scale;
-	v = rotate_around_point(v, middle, (*fdf).x_angle, (*fdf).y_angle, (*fdf).z_angle);
+	v = rotate_around_point(v, middle, (*fdf).x_angle , (*fdf).y_angle, (*fdf).z_angle);
 	v.z += 200;
+	if ((*fdf).z_move < -10) (*fdf).z_move = -10;
 	v.z += (*fdf).z_move * (*fdf).scale;
 	v.y += (*fdf).y_move *  (*fdf).scale;
 	v.x += (*fdf).x_move * (*fdf).scale;
