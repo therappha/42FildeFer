@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 22:06:54 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 20:31:06 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,16 @@ typedef struct s_fdf
 	t_image	image;
 }	t_fdf;
 
+typedef struct s_color
+{
+	int r;
+	int g;
+	int b;
+	double step_r;
+	double step_g;
+	double step_b;
+}	t_color;
+
 void	drawline(t_fdf *fdf, t_point start, t_point dest);
 void	drawmap(t_fdf *fdf, t_line **line);
 int		read_map(t_line **map_line, t_fdf *fdf, char *av);
@@ -80,11 +90,5 @@ t_line	*ft_newline(t_fdf *fdf, char **content);
 void	ft_lineadd_back(t_line **lst, t_line *new);
 int		ft_linelen(char **line);
 int		get_scale(t_fdf *fdf);
-
-# define T(a) ((a) >> 24) & 0xFF
-# define R(a) ((a) >> 16) & 0xFF
-# define G(a) ((a) >> 8) & 0xFF
-# define B(a) (a) & 0xFF
-# define RGB(r, g, b) ((0xFF << 24) | ((r) << 16) | ((g) << 8) | (b))
 
 #endif

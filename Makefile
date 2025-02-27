@@ -12,7 +12,7 @@ SRCS_DIR= ./srcs
 
 SRCS= $(SRCS_DIR)/main.c $(SRCS_DIR)/free_displays.c $(SRCS_DIR)/drawlines.c \
 $(SRCS_DIR)/get_map.c $(SRCS_DIR)/fdf_utils.c  $(SRCS_DIR)/drawmap.c $(SRCS_DIR)/ft_free.c \
-$(SRCS_DIR)/get_scale.c
+$(SRCS_DIR)/get_scale.c $(SRCS_DIR)/colors.c
 
 
 

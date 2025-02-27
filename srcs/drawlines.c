@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:11:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/27 19:29:41 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 20:16:55 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,25 +107,6 @@ int	get_steps(int point1, int point2)
 		return (abs(point2));
 }
 
-/*# define T(a) ((a) >> 24) & 0xFF
-# define R(a) ((a) >> 16) & 0xFF
-# define G(a) ((a) >> 8) & 0xFF
-# define B(a) (a) & 0xFF
-# define RGB(r, g, b) ((0xFF << 24) | ((r) << 16) | ((g) << 8) | (b))
-*/
 
-int	gradient(int startcolor, int endcolor, int len, int pix)
-{
-	double	increment[3];
-	int		new[3];
-	int		newcolor;
 
-	increment[0] = (double)((R(endcolor)) - (R(startcolor))) / (double)len;
-	increment[1] = (double)((G(endcolor)) - (G(startcolor))) / (double)len;
-	increment[2] = (double)((B(endcolor)) - (B(startcolor))) / (double)len;
-	new[0] = (R(startcolor)) + round(pix * increment[0]);
-	new[1] = (G(startcolor)) + round(pix * increment[1]);
-	new[2] = (B(startcolor)) + round(pix * increment[2]);
-	newcolor = RGB((new[0]), new[1], new[2]);
-	return (newcolor);
-}
+
