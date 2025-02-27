@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:04:57 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 21:50:07 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 20:07:20 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	drawmap(t_fdf *fdf, t_line **line)
 			next_array = current_line -> next -> line;
 		while (current_array[iterate.x])
 		{
-			if (current_array[iterate.x + 1])
+			if (current_array[iterate.x + 1] && current_array[iterate.x + 1][0] != '\n')
 				draw_right(fdf, iterate, current_array);
-			if (next_array && next_array[iterate.x])
+			if (next_array && next_array[iterate.x] && next_array[iterate.x][0] != '\n')
 				draw_down(fdf, iterate, current_array, next_array);
 			iterate.x++;
 		}

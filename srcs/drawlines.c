@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:11:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 21:17:02 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:29:41 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,13 @@ int	get_steps(int point1, int point2)
 	else
 		return (abs(point2));
 }
+
+/*# define T(a) ((a) >> 24) & 0xFF
+# define R(a) ((a) >> 16) & 0xFF
+# define G(a) ((a) >> 8) & 0xFF
+# define B(a) (a) & 0xFF
+# define RGB(r, g, b) ((0xFF << 24) | ((r) << 16) | ((g) << 8) | (b))
+*/
 
 int	gradient(int startcolor, int endcolor, int len, int pix)
 {
