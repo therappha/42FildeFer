@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 22:01:46 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/27 19:51:44 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 21:11:49 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ int	get_scale(t_fdf *fdf)
 		return (scale_x * 1.5);
 	return (scale_x);
 }
-

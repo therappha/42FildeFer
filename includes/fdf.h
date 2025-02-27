@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/27 20:31:06 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 21:41:32 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int		read_map(t_line **map_line, t_fdf *fdf, char *av);
 int		free_displays(t_fdf *fdf);
 void	ft_pixelput(t_image *data, int x, int y, int color);
 int		input_handler(int keysym, t_fdf *fdf);
+int		gradient(int startcolor, int endcolor, int len, int pix);
 
 //math convertions
 t_point	cart_to_iso(t_point cartesian, char *s_height, int distance, int color);

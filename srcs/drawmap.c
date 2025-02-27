@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:04:57 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/27 20:07:20 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 21:32:25 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	draw_right(t_fdf *fdf, t_point iterate, char **c_line);
 void	drawmap(t_fdf *fdf, t_line **line)
 {
 	t_line	*current_line;
-	char	**current_array;
-	char	**next_array;
+	char	**cur_arr;
+	char	**ne_arr;
 	t_point	iterate;
 
 	iterate.y = 0;
@@ -28,16 +28,16 @@ void	drawmap(t_fdf *fdf, t_line **line)
 	while (current_line)
 	{
 		iterate.x = 0;
-		next_array = NULL;
-		current_array = current_line -> line;
+		ne_arr = NULL;
+		cur_arr = current_line -> line;
 		if (current_line -> next)
-			next_array = current_line -> next -> line;
-		while (current_array[iterate.x])
+			ne_arr = current_line -> next -> line;
+		while (cur_arr[iterate.x])
 		{
-			if (current_array[iterate.x + 1] && current_array[iterate.x + 1][0] != '\n')
-				draw_right(fdf, iterate, current_array);
-			if (next_array && next_array[iterate.x] && next_array[iterate.x][0] != '\n')
-				draw_down(fdf, iterate, current_array, next_array);
+			if (cur_arr[iterate.x + 1] && cur_arr[iterate.x + 1][0] != '\n')
+				draw_right(fdf, iterate, cur_arr);
+			if (ne_arr && ne_arr[iterate.x] && ne_arr[iterate.x][0] != '\n')
+				draw_down(fdf, iterate, cur_arr, ne_arr);
 			iterate.x++;
 		}
 		current_line = current_line -> next;

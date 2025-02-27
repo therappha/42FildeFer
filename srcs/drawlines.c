@@ -6,13 +6,12 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:11:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/27 20:16:55 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 21:28:50 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	gradient(int startcolor, int endcolor, int len, int pix);
 int	get_steps(int point1, int point2);
 
 void	drawline_low(t_fdf *fdf, t_point start, t_point dest, int steps)
@@ -106,7 +105,3 @@ int	get_steps(int point1, int point2)
 	else
 		return (abs(point2));
 }
-
-
-
-
