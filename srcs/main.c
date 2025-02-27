@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:42:20 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 22:05:42 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:26:21 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	t_fdf	fdf;
 	t_line	*lines;
 
-	if (ac != 3)
+	if (ac != 2)
 		return (0);
 	lines = NULL;
 	if (read_map(&lines, &fdf, av[1]) == -1)
@@ -25,14 +25,13 @@ int	main(int ac, char **av)
 		ft_printf("Error, Could not read file!\n");
 		return (0);
 	}
-	fdf.mlx_ptr = mlx_init(); //init_window.c start
+	fdf.mlx_ptr = mlx_init();
 	fdf.win_ptr = mlx_new_window
 		(fdf.mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y, "FdF");
 	fdf.image.img = mlx_new_image(fdf.mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y);
 	fdf.image.addr = mlx_get_data_addr(fdf.image.img, &fdf.image.bits_per_pixel,
-			&fdf.image.line_length, &fdf.image.endian); // init_window.c end
+			&fdf.image.line_length, &fdf.image.endian);
 	fdf.scale = get_scale(&fdf);
-	fdf.scale = atoi(av[2]);
 	drawmap(&fdf, &lines);
 	ft_linefree(&lines);
 	mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.image.img, 0, 0);

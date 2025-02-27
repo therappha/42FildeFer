@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 22:01:46 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 22:05:23 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:26:08 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ int	ft_linelen(char **line)
 
 int	get_scale(t_fdf *fdf)
 {
-	printf("map size %d, %d\n", (*fdf).map_x, (*fdf).map_y);
-	return (1);
+	int	scale_x;
+	int	scale_y;
+
+	scale_x = 500 / (*fdf).map_x;
+	scale_y = 400 / (*fdf).map_y;
+	if (scale_x == 0 && scale_y == 0)
+		return (1);
+	if (scale_x > scale_y)
+		return (scale_x);
+	else
+		return (scale_y);
 }
