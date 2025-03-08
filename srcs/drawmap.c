@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:04:57 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/27 21:32:25 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/03/08 20:50:55 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	drawmap(t_fdf *fdf, t_line **line)
 		{
 			if (cur_arr[iterate.x + 1] && cur_arr[iterate.x + 1][0] != '\n')
 				draw_right(fdf, iterate, cur_arr);
-			if (ne_arr && ne_arr[iterate.x] && ne_arr[iterate.x][0] != '\n')
+			if (ne_arr)
 				draw_down(fdf, iterate, cur_arr, ne_arr);
 			iterate.x++;
 		}
@@ -64,7 +64,11 @@ void	draw_down(t_fdf *fdf, t_point iterate, char **c_line, char **n_line)
 {
 	t_point	start;
 	t_point	dest;
+	int		i;
 
+	i = 0;
+	if (n_line[iterate.x][0] == '\n')
+		return ;
 	start = iterate;
 	start.color = get_color(c_line[iterate.x]);
 	start = cart_to_iso(start, c_line[iterate.x], (*fdf).scale, start.color);
@@ -80,11 +84,10 @@ int	get_color(char *str)
 	int		color;
 	char	*colorstr;
 
+	color = (0xFFFFFF);
 	colorstr = NULL;
 	colorstr = ft_strnstr(str, "0x", ft_strlen(str));
-	if (colorstr)
+	if (colorstr && ft_strlen(colorstr) > 2)
 		color = ft_atoi_16(colorstr + 2);
-	else
-		color = (0xFFFFFF);
 	return (color);
 }

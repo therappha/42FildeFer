@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:55:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/01/11 17:07:31 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/03/08 18:17:09 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		if (fd == -1 && buffer)
+			free(buffer);
 		return (NULL);
+	}
 	buffer = ft_read(fd, buffer);
 	if (!buffer)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 22:01:46 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/27 21:11:49 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/03/08 20:51:09 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	get_scale(t_fdf *fdf)
 {
 	int	scale_x;
 
+	if ((*fdf).map_x == 0)
+		return (1);
 	scale_x = 500 / (*fdf).map_x;
 	if (scale_x == 0)
 		return (1);

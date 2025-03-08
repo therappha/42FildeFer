@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 20:16:49 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/27 21:50:22 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/03/05 21:01:05 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	gradient(int startcolor, int endcolor, double len, int pix)
 	t_color	color;
 	int		newcolor;
 
-	color.step_r = ((double)(get_r(endcolor)) - (get_r(startcolor))) / len;
-	color.step_g = ((double)(get_g(endcolor)) - (get_g(startcolor))) / len;
-	color.step_b = ((double)(get_b(endcolor)) - (get_b(startcolor))) / len;
+	color.step_r = ((get_r(endcolor)) - (get_r(startcolor))) / len;
+	color.step_g = ((get_g(endcolor)) - (get_g(startcolor))) / len;
+	color.step_b = ((get_b(endcolor)) - (get_b(startcolor))) / len;
 	color.r = (get_r(startcolor)) + (pix * color.step_r);
 	color.g = (get_g(startcolor)) + (pix * color.step_g);
 	color.b = (get_b(startcolor)) + (pix * color.step_b);

@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:39:30 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/26 21:05:02 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/03/08 19:34:32 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,20 @@ int	input_handler(int keysym, t_fdf *fdf)
 {
 	if (keysym == XK_Escape)
 		free_displays(fdf);
+	return (0);
+}
+
+int	check_args(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (len < 5)
+		return (0);
+	str = str + len - 4;
+	if (ft_strncmp(".fdf", str, 4) == 0)
+	{
+		return (1);
+	}
 	return (0);
 }

@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 13:52:44 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/03/08 20:35:01 by rafaelfe         ###   ########.fr       */
+/*   Created: 2025/03/08 18:26:08 by rafaelfe          #+#    #+#             */
+/*   Updated: 2025/03/08 18:35:26 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../includes/fdf.h"
 
-int	ft_atoi(const char *str)
+void	init_window(t_fdf *fdf)
 {
-	int		minus;
-	long	result;
-
-	minus = 1;
-	result = 0;
-	while ((*str == 32) || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			minus *= -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + *str - '0';
-		str++;
-	}
-	return ((int)result * minus);
+	(*fdf).mlx_ptr = mlx_init();
+	(*fdf).win_ptr = mlx_new_window
+		((*fdf).mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y, "FdF");
+	(*fdf).image.img = mlx_new_image
+		((*fdf).mlx_ptr, SCREEN_SIZE_X, SCREEN_SIZE_Y);
+	(*fdf).image.addr = mlx_get_data_addr(
+			(*fdf).image.img, &(*fdf).image.bits_per_pixel,
+			&(*fdf).image.line_length, &(*fdf).image.endian);
 }

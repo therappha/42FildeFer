@@ -12,20 +12,19 @@ SRCS_DIR= ./srcs
 
 SRCS= $(SRCS_DIR)/main.c $(SRCS_DIR)/free_displays.c $(SRCS_DIR)/drawlines.c \
 $(SRCS_DIR)/get_map.c $(SRCS_DIR)/fdf_utils.c  $(SRCS_DIR)/drawmap.c $(SRCS_DIR)/ft_free.c \
-$(SRCS_DIR)/get_scale.c $(SRCS_DIR)/colors.c
+$(SRCS_DIR)/get_scale.c $(SRCS_DIR)/colors.c $(SRCS_DIR)/init_window.c
 
 
 
 OBJS=$(SRCS:.c=.o)
 
 all: $(NAME)
-		@echo "Project built!"
 
 $(NAME) : $(OBJS) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 %.o : %.c
-	@$(CC) $(CFLAGS) -I $(INCLUDES) -c $^ -o $@
+	$(CC) $(CFLAGS) -I $(INCLUDES) -c $^ -o $@
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR) --no-print-directory
