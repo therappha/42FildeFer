@@ -6,15 +6,13 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:11:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/02/27 21:28:50 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/03/08 21:58:39 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	get_steps(int point1, int point2);
-
-void	drawline_low(t_fdf *fdf, t_point start, t_point dest, int steps)
+void	drawline_low(t_fdf *fdf, t_point start, t_point dest)
 {
 	t_drawline	line;
 	int			i;
@@ -43,7 +41,7 @@ void	drawline_low(t_fdf *fdf, t_point start, t_point dest, int steps)
 	}
 }
 
-void	drawline_high(t_fdf *fdf, t_point start, t_point dest, int steps)
+void	drawline_high(t_fdf *fdf, t_point start, t_point dest)
 {
 	t_drawline	line;
 	int			i;
@@ -74,34 +72,22 @@ void	drawline_high(t_fdf *fdf, t_point start, t_point dest, int steps)
 
 void	drawline(t_fdf *fdf, t_point start, t_point dest)
 {
-	int	steps;
-	int	increment;
-
 	start.x += SCREEN_SIZE_X / 4;
 	start.y += SCREEN_SIZE_Y / 2;
 	dest.x += SCREEN_SIZE_X / 4;
 	dest.y += SCREEN_SIZE_Y / 2;
-	steps = get_steps(dest.x - start.x, dest.y - start.y);
 	if (abs(dest.y - start.y) < abs(dest.x - start.x))
 	{
 		if (start.x > dest.x)
-			drawline_low(fdf, dest, start, steps);
+			drawline_low(fdf, dest, start);
 		else
-			drawline_low(fdf, start, dest, steps);
+			drawline_low(fdf, start, dest);
 	}
 	else
 	{
 		if (start.y > dest.y)
-			drawline_high(fdf, dest, start, steps);
+			drawline_high(fdf, dest, start);
 		else
-			drawline_high(fdf, start, dest, steps);
+			drawline_high(fdf, start, dest);
 	}
-}
-
-int	get_steps(int point1, int point2)
-{
-	if (abs(point1) > abs(point2))
-		return (abs(point1));
-	else
-		return (abs(point2));
 }
