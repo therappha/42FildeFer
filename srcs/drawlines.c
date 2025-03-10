@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:11:04 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/03/08 21:58:39 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:09:20 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	drawline(t_fdf *fdf, t_point start, t_point dest)
 	start.y += SCREEN_SIZE_Y / 2;
 	dest.x += SCREEN_SIZE_X / 4;
 	dest.y += SCREEN_SIZE_Y / 2;
-	if (abs(dest.y - start.y) < abs(dest.x - start.x))
+	if (ft_abs(dest.y - start.y) < ft_abs(dest.x - start.x))
 	{
 		if (start.x > dest.x)
 			drawline_low(fdf, dest, start);

@@ -1,7 +1,7 @@
 
 NAME= fdf
 CC= cc
-CFLAGS = -g  -I $(INCLUDES)
+CFLAGS = -g -Wall -Wextra -Werror -I $(INCLUDES)
 LDFLAGS =  -L $(LIBFT_DIR) -lft -L $(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm
 INCLUDES= ./includes
 LIBFT_DIR= ./libs/libft
@@ -12,7 +12,7 @@ SRCS_DIR= ./srcs
 
 SRCS= $(SRCS_DIR)/main.c $(SRCS_DIR)/free_displays.c $(SRCS_DIR)/drawlines.c \
 $(SRCS_DIR)/get_map.c $(SRCS_DIR)/fdf_utils.c  $(SRCS_DIR)/drawmap.c $(SRCS_DIR)/ft_free.c \
-$(SRCS_DIR)/get_scale.c $(SRCS_DIR)/colors.c $(SRCS_DIR)/init_window.c
+$(SRCS_DIR)/get_scale.c $(SRCS_DIR)/colors.c $(SRCS_DIR)/init_window.c $(SRCS_DIR)/math.c
 
 
 

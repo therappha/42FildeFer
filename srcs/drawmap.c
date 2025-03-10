@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:04:57 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/03/08 20:50:55 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:04:03 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ int	get_color(char *str)
 	colorstr = NULL;
 	colorstr = ft_strnstr(str, "0x", ft_strlen(str));
 	if (colorstr && ft_strlen(colorstr) > 2)
+	{
 		color = ft_atoi_16(colorstr + 2);
+		if (color == 0)
+			return (0xFFFFFF);
+	}
 	return (color);
 }

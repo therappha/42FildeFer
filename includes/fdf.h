@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/03/08 18:40:17 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:08:42 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int		gradient(int startcolor, int endcolor, double len, int pix);
 //math convertions
 t_point	cart_to_iso(t_point cartesian, char *s_height, int distance, int color);
 int		ft_atoi_16(char *str);
+int		ft_abs(int num);
 //struct utils
 void	ft_linefree(t_line **line);
 void	ft_freesplit(char **str);
