@@ -6,7 +6,7 @@
 /*   By: rafaelfe <rafaelfe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:34:13 by rafaelfe          #+#    #+#             */
-/*   Updated: 2025/03/10 18:08:42 by rafaelfe         ###   ########.fr       */
+/*   Updated: 2025/03/10 20:21:42 by rafaelfe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ typedef struct s_fdf
 
 typedef struct s_color
 {
-	int r;
-	int g;
-	int b;
-	double step_r;
-	double step_g;
-	double step_b;
+	int		r;
+	int		g;
+	int		b;
+	double	step_r;
+	double	step_g;
+	double	step_b;
 }	t_color;
 
 void	drawline(t_fdf *fdf, t_point start, t_point dest);

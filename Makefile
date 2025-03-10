@@ -14,13 +14,11 @@ SRCS= $(SRCS_DIR)/main.c $(SRCS_DIR)/free_displays.c $(SRCS_DIR)/drawlines.c \
 $(SRCS_DIR)/get_map.c $(SRCS_DIR)/fdf_utils.c  $(SRCS_DIR)/drawmap.c $(SRCS_DIR)/ft_free.c \
 $(SRCS_DIR)/get_scale.c $(SRCS_DIR)/colors.c $(SRCS_DIR)/init_window.c $(SRCS_DIR)/math.c
 
-
-
 OBJS=$(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME) : $(OBJS) $(LIBFT) $(MLX)
+$(NAME) : $(MLX) $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 %.o : %.c
@@ -29,9 +27,11 @@ $(NAME) : $(OBJS) $(LIBFT) $(MLX)
 $(LIBFT):
 	@make -C $(LIBFT_DIR) --no-print-directory
 
-
 $(MLX):
-	@make -C $(MLX_DIR) --no-print-directory
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR); \
+	fi
+	@$(MAKE) -C $(MLX_DIR)
 
 clean:
 	@rm -rf $(OBJS)
@@ -40,8 +40,9 @@ clean:
 	@echo "Cleaning Objects!"
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf $(MLX_DIR)
 	@make fclean -C $(LIBFT_DIR) --no-print-directory
-	@echo "Cleaning Objects and game!"
+	@echo "Cleaning Objects and executable"
 
 re: fclean all
 
